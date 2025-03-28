@@ -15,7 +15,7 @@ def fetch_data(offset):
     else:
         print(f"Failed to retrieve data. Status code: {response.status_code}")
         return []
-
+        
 all_data = []
 offset = 0
 
