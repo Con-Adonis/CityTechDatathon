@@ -16,11 +16,17 @@ else:
     print(f"Failed to retrieve data. Status code: {response.status_code}")
 
 fullText = (json.dumps(data)).split("}, {")
+ProbPerBurrow = dict()
 
-for x in fullText:
-    lineSplitted = x.split('", "')
-    print('\n New Case \n')
+for case in fullText:
+    #splits full text into individual cases x, only counts if cases have both city and charge code
+    lineSplitted = case.split('", "')
+    if 'violation_location_city' in case and 'charge_1_code' in case:
+        print('\n New Case \n')
+    else:
+        continue
 
-    for y in lineSplitted:
-        if 'violation_location_city' in y or 'charge_1_code"' in y:
-            print(y, '\n')
+    ##splits cases into individual lines based on if it has the corret start
+    for line in lineSplitted:
+        if 'violation_location_city' in line or 'charge_1_code"' in line:
+            print(line, '\n')
