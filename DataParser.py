@@ -15,4 +15,12 @@ if response.status_code == 200:
 else:
     print(f"Failed to retrieve data. Status code: {response.status_code}")
 
-print(json.dumps(data[:5], indent=2))  # Print the first 5 records nicely formatted
+fullText = (json.dumps(data)).split("}, {")
+
+for x in fullText:
+    lineSplitted = x.split('", "')
+    print('\n New Case \n')
+
+    for y in lineSplitted:
+        if 'violation_location_city' in y or 'charge_1_code"' in y:
+            print(y, '\n')
