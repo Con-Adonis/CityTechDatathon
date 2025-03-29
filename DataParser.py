@@ -1,3 +1,5 @@
+#Outdated file to show the group's previous method for distilling and managing databse information
+
 import requests
 import json
 
@@ -16,5 +18,49 @@ else:
     print(f"Failed to retrieve data. Status code: {response.status_code}")
 
 
-print(json.dumps(data[:5], indent=2))  # Print the first 5 records nicely formatted
+fullText = (json.dumps(data)).split("}, {")
 
+#Dictionaries of burrows
+MannDict = {}
+BrookDict = {}
+BrxDict = {}
+QnsDict = {}
+SIDict = {}
+
+for case in fullText:
+    #splits full text into individual cases x, only counts if cases have both city and charge code
+    lineSplitted = case.split('", "')
+    tempList = []
+    if 'violation_location_borough' in case and 'charge_1_code' in case:
+        print('\nNew Case\n')
+    else:
+        continue
+
+    ##splits cases into individual lines based on if it has the corret start
+    for line in lineSplitted:
+        if 'violation_location_borough' in line or 'charge_1_code"' in line:
+            tempList.append(line[-4:])
+            print(line, '\n')
+    
+    print(tempList)
+
+    if tempList[0] == 'KLYN':
+        print('Brooklyn')
+        if tempList[1] in BrookDict:
+            BrookDict[tempList[1]] += 1
+        else:
+            BrookDict[tempList[1]] = 1
+        
+    #if tempList[0] == 'RONX':
+        #if tempList[1] in BrxDict:
+            #BrxDict.tempList[1] += 1
+
+    #if tempList[0] == 'EENS':
+       # if tempList[1] in BrxDict:
+            #BrxDict.tempList[1] += 1
+
+    ##if tempList[0] == 'TTAN':
+        #if tempList[1] in MannDict:
+            # MannDict.tempList[1] += 1
+            
+    print(MannDict)
