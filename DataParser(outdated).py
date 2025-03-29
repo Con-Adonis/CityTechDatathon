@@ -63,4 +63,3 @@ for case in fullText:
         #if tempList[1] in MannDict:
             # MannDict.tempList[1] += 1
             
-    print(MannDict)

@@ -106,3 +106,5 @@ for line in readSI:
 OATHfile.write("Staten Island's 20 most frequent violations\n")
 OATHfile.write(str(sorted(StatDict.items(), key=lambda x: x[1], reverse=True)[:20]))
 OATHfile.write('\n\n')
+
+OATHfile.close()
